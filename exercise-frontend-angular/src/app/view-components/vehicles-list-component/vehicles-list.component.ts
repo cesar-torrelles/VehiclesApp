@@ -24,6 +24,10 @@ export class VehiclesListComponent implements OnInit {
     this.vehiclesService.loadVehicles().subscribe(response => this.onVehicleListCallSuccess(response));
   }
 
+  private deleteVehicle(id: number){
+    this.vehiclesService.deleteVehicle(id)
+  }
+
   private onVehicleListCallSuccess(response) {
     this.vehicleList = response.map(vehicle => {
       return new VehicleView(vehicle.id, vehicle.plate, vehicle.manufacturer, vehicle.make, vehicle.commercialName,

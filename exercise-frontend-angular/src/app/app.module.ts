@@ -69,7 +69,7 @@ import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 
 import {AppComponent} from './app.component';
-import {VehiclesListComponent} from './view/vehicles-list/vehicles-list.component';
+import {VehiclesListComponent} from './view-components/vehicles-list-component/vehicles-list.component';
 import {CardModule} from 'primeng/card';
 
 @NgModule({

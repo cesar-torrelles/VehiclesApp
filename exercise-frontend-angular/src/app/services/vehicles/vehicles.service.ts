@@ -16,15 +16,29 @@ export class VehiclesService {
     this.url = environment.domainUrl + 'vehicles';
   }
 
+  //method to load vehicles
   loadVehicles(): Observable<VehicleView[]> {
     return this.http.get<VehicleView[]>(this.url, {headers: this.headers});
   }
 
+  //method to create a vehicle
   createVehicle(vehicleView: VehicleView): Observable<VehicleView> {
     return this.http.post<VehicleView>(this.url, vehicleView, {headers: this.headers});
   }
 
+  //method to update a vehicle
+  updateVehicle(vehicleView: VehicleView){
+    return this.http.put(`${this.url}/${vehicleView.id}`, vehicleView);
+  }
 
+  //Method to get one vehicle searching by id
+  getVehicleById(id: number): Observable<VehicleView> {
+    return this.http.get<VehicleView>(`${this.url}/${id}`);
+  } 
 
+  //method to delete a vehicle
+  deleteVehicle(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
+  }
 
 }

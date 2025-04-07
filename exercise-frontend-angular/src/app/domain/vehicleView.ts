@@ -1,3 +1,5 @@
+//
+
 interface IVehicleView {
   id: number;
   plate: string;
@@ -8,6 +10,7 @@ interface IVehicleView {
   capacity: number;
 }
 
+//es la estructura que necesito para comunicarme con el backend
 export class VehicleView implements IVehicleView {
   id: number;
   plate: string;
