@@ -1,5 +1,7 @@
 <div>
+  
   <p-card title="Vehicles">
+  <p-messages [(value)]="msgs"></p-messages>
     <p-table #ptable [value]="vehicleList"
              [paginator]="false" [lazy]="true"
              [responsive]="true" [scrollable]="true"
@@ -27,8 +29,8 @@
           <td class="actions-col">
             <button type="button" pButton class="ui-button-raised"
                     icon="pi pi-pencil" title="Edit"></button>
-            <button type="button" pButton class="ui-button-raised"
-                    icon="pi pi-trash" title="Delete"></button>
+            <p-button type="button" Button class="ui-button-raised"
+                    icon="pi pi-trash" title="Delete" (click)="deleteVehicle(rowData.id)"></p-button>
           </td>
         </tr>
       </ng-template>

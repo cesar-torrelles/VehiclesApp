@@ -72,6 +72,8 @@ import {AppComponent} from './app.component';
 import {VehiclesListComponent} from './view-components/vehicles-list-component/vehicles-list.component';
 import {CardModule} from 'primeng/card';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -149,6 +151,11 @@ import {CardModule} from 'primeng/card';
     CardModule,
     MenuModule,
     DragDropModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    InputTextModule,
+    DropdownModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

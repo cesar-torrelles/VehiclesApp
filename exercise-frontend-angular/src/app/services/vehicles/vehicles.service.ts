@@ -38,7 +38,9 @@ export class VehiclesService {
 
   //method to delete a vehicle
   deleteVehicle(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
-  }
+    return this.http.delete<void>(`${this.url}/${id}`, {
+      responseType: 'text' as 'json'
+    });
 
+  }
 }
