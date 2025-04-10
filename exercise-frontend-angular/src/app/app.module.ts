@@ -70,14 +70,18 @@ import {TreeTableModule} from 'primeng/treetable';
 
 import {AppComponent} from './app.component';
 import {VehiclesListComponent} from './view-components/vehicles-list-component/vehicles-list.component';
+import {AddVehicleFormComponent} from './view-components/add-vehicle-form/add-vehicle-form.component';
 import {CardModule} from 'primeng/card';
+import { MessageService } from 'primeng/api';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    VehiclesListComponent
+    VehiclesListComponent, 
+    AddVehicleFormComponent
   ],
   imports: [
     BrowserModule,
@@ -151,14 +155,10 @@ import {CardModule} from 'primeng/card';
     CardModule,
     MenuModule,
     DragDropModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    ButtonModule,
-    InputTextModule,
-    DropdownModule
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

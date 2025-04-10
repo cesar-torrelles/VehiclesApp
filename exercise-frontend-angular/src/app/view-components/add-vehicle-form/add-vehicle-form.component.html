@@ -1,0 +1,44 @@
+<p-messages [(value)]="msgs"></p-messages>
+<form (ngSubmit)="onSubmit()"></form>
+<div class="form-container">
+  <div class="row">
+    <div class="form-group">
+      <label>Plate:</label>
+      <input type="text" [(ngModel)]="newVehicle.plate" pInputText required>
+    </div>
+
+    <div class="form-group">
+      <label>Manufacturer:</label>
+      <input type="text" [(ngModel)]="newVehicle.manufacturer" pInputText required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label>Make:</label>
+      <input type="text" [(ngModel)]="newVehicle.make" pInputText required>
+    </div>
+
+    <div class="form-group">
+      <label>Comercial name:</label>
+      <input type="text" [(ngModel)]="newVehicle.commercialName" pInputText required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label>VIN Number:</label>
+      <input type="text" [(ngModel)]="newVehicle.vinNumber" pInputText required>
+    </div>
+
+    <div class="form-group">
+      <label>Capacity:</label>
+      <input type="number" [(ngModel)]="newVehicle.capacity" pInputText>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button pButton type="button" (click)="onSubmit()" label="Save" icon="pi pi-check" class="save-btn"></button>
+    <button pButton type="button" (click)="onCancel()" label="Cancel" icon="pi pi-times" class="cancel-btn"></button>
+  </div>
+</div>

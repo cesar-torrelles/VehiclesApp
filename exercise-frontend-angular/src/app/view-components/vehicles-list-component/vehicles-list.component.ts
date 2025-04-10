@@ -10,9 +10,15 @@ import { Message } from 'primeng/api';
 })
 export class VehiclesListComponent implements OnInit {
 
+  // Control the visibility of the modals
+  displayDialog: boolean = false;
+  displayEditDialog: boolean = false;
+  displayCloneDialog: boolean = false;
+
   vehicleList: VehicleView[];
   vehicle: VehicleView;
   selectedVehicle: any;
+
   msgs: Message[] = [];
 
   constructor(private vehiclesService: VehiclesService) {
@@ -21,6 +27,16 @@ export class VehiclesListComponent implements OnInit {
 
   ngOnInit() {
     this.loadVehicles();
+  }
+
+  //Function to display the dialog
+  showDialog() {
+    this.displayDialog = true;
+    
+  }
+
+  closeDialog() {
+    this.displayDialog = false;
   }
 
   private loadVehicles() {
@@ -48,6 +64,35 @@ export class VehiclesListComponent implements OnInit {
       return new VehicleView(vehicle.id, vehicle.plate, vehicle.manufacturer, vehicle.make, vehicle.commercialName,
         vehicle.vinNumber, vehicle.capacity);
     });
+  }
+
+  //Method to open the create dialog
+  onVehicleAdded(newVehicle: VehicleView) {
+    //Close the popup
+    this.showDialog()
+
+    if (!newVehicle) {
+      this.msgs = [{ severity: 'error', summary: 'Error', detail: 'The vehicle could not be added. Please check the data.' }];
+      return;
+    }
+
+    this.vehiclesService.createVehicle(newVehicle).subscribe(
+      (response) => {
+        if (response && response.id) {  //Suppose the API returns an ID if this was created correctly.
+          this.vehicleList.push(response);
+          this.ngOnInit();
+          this.msgs = [{ severity: 'success', summary: 'Success', detail: 'Vehicle successfully added.' }];
+          this.closeDialog();
+        } else {
+          this.msgs = [{ severity: 'error', summary: 'Error', detail: 'Vehicle could not be added.' }];
+        }
+      },
+      (error) => {
+        this.msgs = [{ severity: 'error', summary: 'Error', detail: 'A problem has occurred while storing the car.' }];
+      }
+      
+
+    );
   }
 
   public prepareToCreateVehicle() {

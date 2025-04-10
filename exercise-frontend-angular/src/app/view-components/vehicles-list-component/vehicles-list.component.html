@@ -1,12 +1,28 @@
 <div>
   
   <p-card title="Vehicles">
-  <p-messages [(value)]="msgs"></p-messages>
+
+    <div class="top-bar">
+      <button pButton type="button" icon="pi pi-plus" (click)="showDialog()"></button>
+    </div>
+
+    <p-messages [(value)]="msgs"></p-messages>
+
+      <!--Popup to create a new vehicle-->
+    <p-dialog header="Add new vehicle" [(visible)]="displayDialog" [modal]="true" [closable]="true">
+      <app-add-vehicle-form (vehicleAdded)="onVehicleAdded($event)" (cancel)="closeDialog()"></app-add-vehicle-form>
+    </p-dialog>
+
+    
+
+
+  
     <p-table #ptable [value]="vehicleList"
              [paginator]="false" [lazy]="true"
              [responsive]="true" [scrollable]="true"
              sortField="id"
              [sortOrder]="1">
+
 
       <ng-template pTemplate="header" let-columns>
         <tr>
@@ -27,10 +43,9 @@
           <td>{{rowData.make}}</td>
           <td>{{rowData.commercialName}}</td>
           <td class="actions-col">
-            <button type="button" pButton class="ui-button-raised"
-                    icon="pi pi-pencil" title="Edit"></button>
-            <p-button type="button" Button class="ui-button-raised"
-                    icon="pi pi-trash" title="Delete" (click)="deleteVehicle(rowData.id)"></p-button>
+          
+            <button pButton type="button" Button class="ui-button-raised" icon="pi pi-pencil" title="Edit"></button>
+            <button pButton type="button" Button class="ui-button-raised" icon="pi pi-trash" title="Delete" (click)="deleteVehicle(rowData.id)"></button>
           </td>
         </tr>
       </ng-template>

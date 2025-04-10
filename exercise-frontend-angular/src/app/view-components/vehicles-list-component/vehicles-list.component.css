@@ -1,0 +1,10 @@
+.top-bar{
+    display: flex;
+    align-items: center; /* Alinea verticalmente el título y el botón */
+    gap: 10px;
+}
+
+button {
+    margin-left: auto; 
+    margin-bottom: 10px;
+  }
