@@ -11,7 +11,7 @@ import { Message } from 'primeng/api';
 export class VehiclesListComponent implements OnInit {
 
   // Control the visibility of the modals
-  displayDialog: boolean = false;
+  displayNewVehicleDialog: boolean = false;
   displayEditDialog: boolean = false;
   displayCloneDialog: boolean = false;
 
@@ -30,14 +30,31 @@ export class VehiclesListComponent implements OnInit {
   }
 
   //Function to display the dialog
-  showDialog() {
-    this.displayDialog = true;
+  showNewVehicleDialog() {
+    this.displayNewVehicleDialog = true;
     
   }
 
-  closeDialog() {
-    this.displayDialog = false;
+  closeNewVehicleDialog() {
+    this.displayNewVehicleDialog = false;
   }
+
+  showEditDialog() {
+    this.displayEditDialog = true;
+  }
+  
+  closeEditDialog() {
+    this.displayEditDialog = false;
+  } 
+
+  showCloneDialog() {
+    this.displayCloneDialog = true;
+  }
+  
+  closeCloneDialog() {
+    this.displayCloneDialog = false;
+  } 
+  
 
   private loadVehicles() {
     this.vehiclesService.loadVehicles().subscribe(response => this.onVehicleListCallSuccess(response));
@@ -66,23 +83,23 @@ export class VehiclesListComponent implements OnInit {
     });
   }
 
-  //Method to open the create dialog
+  //Method to open dialog and create vehicle
   onVehicleAdded(newVehicle: VehicleView) {
     //Close the popup
-    this.showDialog()
+    this.showNewVehicleDialog()
 
     if (!newVehicle) {
       this.msgs = [{ severity: 'error', summary: 'Error', detail: 'The vehicle could not be added. Please check the data.' }];
       return;
     }
-
+    //creates the new vehicle 
     this.vehiclesService.createVehicle(newVehicle).subscribe(
       (response) => {
         if (response && response.id) {  //Suppose the API returns an ID if this was created correctly.
           this.vehicleList.push(response);
           this.ngOnInit();
           this.msgs = [{ severity: 'success', summary: 'Success', detail: 'Vehicle successfully added.' }];
-          this.closeDialog();
+          this.closeNewVehicleDialog();
         } else {
           this.msgs = [{ severity: 'error', summary: 'Error', detail: 'Vehicle could not be added.' }];
         }
@@ -95,8 +112,33 @@ export class VehiclesListComponent implements OnInit {
     );
   }
 
-  public prepareToCreateVehicle() {
-    this.vehicle = new VehicleView();
+  //Method to open the edit dialog
+  onEditVehicle(vehicle: VehicleView) {
+    this.selectedVehicle = { ...vehicle }; // Fuerza cambio de referencia
+    this.showEditDialog();
+    //console.log("Padre: "+this.selectedVehicle.id+" "+this.selectedVehicle.plate );  
   }
+  
+
+  //Vehicle list update method after editing
+  onVehicleUpdated(updatedVehicle: VehicleView) {
+    this.vehiclesService.updateVehicle(updatedVehicle).subscribe(
+      (response) => {
+        this.msgs = [{ severity: 'success', summary: 'Edited vehicle', detail: `Vehicle ${updatedVehicle.plate} successfully updated` }];
+        this.ngOnInit();
+        this.closeEditDialog();
+      },
+      (error) => {
+        //If there has been an error, we will display an error message.
+        this.msgs = [{ severity: 'error', summary: 'Error', detail: 'The vehicle could not be updated. Please try again.' }];
+      })
+  }
+
+  //Method to open clone dialog
+  onCloneVehicle(clonedVehicle: VehicleView) {
+    this.selectedVehicle = { ...clonedVehicle };
+    this.displayCloneDialog = true;
+  }
+  
 
 }

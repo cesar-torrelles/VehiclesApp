@@ -73,6 +73,8 @@ import {VehiclesListComponent} from './view-components/vehicles-list-component/v
 import {AddVehicleFormComponent} from './view-components/add-vehicle-form/add-vehicle-form.component';
 import {CardModule} from 'primeng/card';
 import { MessageService } from 'primeng/api';
+import { EditVehicleFormComponent } from './view-components/edit-vehicle-form/edit-vehicle-form.component';
+import { CloneVehicleFormComponent } from './view-components/clone-vehicle-form/clone-vehicle-form.component';
 
 
 
@@ -81,7 +83,7 @@ import { MessageService } from 'primeng/api';
   declarations: [
     AppComponent,
     VehiclesListComponent, 
-    AddVehicleFormComponent
+    AddVehicleFormComponent, EditVehicleFormComponent, CloneVehicleFormComponent
   ],
   imports: [
     BrowserModule,

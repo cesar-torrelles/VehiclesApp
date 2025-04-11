@@ -3,15 +3,23 @@
   <p-card title="Vehicles">
 
     <div class="top-bar">
-      <button pButton type="button" icon="pi pi-plus" (click)="showDialog()"></button>
+      <button pButton type="button" icon="pi pi-plus" (click)="showNewVehicleDialog()"></button>
     </div>
 
     <p-messages [(value)]="msgs"></p-messages>
 
       <!--Popup to create a new vehicle-->
-    <p-dialog header="Add new vehicle" [(visible)]="displayDialog" [modal]="true" [closable]="true">
-      <app-add-vehicle-form (vehicleAdded)="onVehicleAdded($event)" (cancel)="closeDialog()"></app-add-vehicle-form>
+    <p-dialog header="Add new vehicle" [(visible)]="displayNewVehicleDialog" [modal]="true" [closable]="true">
+      <app-add-vehicle-form (vehicleAdded)="onVehicleAdded($event)" (cancel)="closeNewVehicleDialog()"></app-add-vehicle-form>
     </p-dialog>
+    
+    <p-dialog header="Edit vehicle" [(visible)]="displayEditDialog" [modal]="true" [closable]="true">
+      <app-edit-vehicle-form [vehicleData]="selectedVehicle" (vehicleUpdated)="onVehicleUpdated($event)" (cancel)="closeEditDialog()"></app-edit-vehicle-form>
+    </p-dialog> 
+
+    <p-dialog header="Clone vehicle" [(visible)]="displayCloneDialog" [modal]="true" [closable]="true">
+      <app-clone-vehicle-form [vehicleData]="selectedVehicle" (vehicleUpdated)="onCloneVehicle($event)" (cancel)="closeCloneDialog()"></app-clone-vehicle-form>
+    </p-dialog> 
 
     
 
@@ -43,8 +51,8 @@
           <td>{{rowData.make}}</td>
           <td>{{rowData.commercialName}}</td>
           <td class="actions-col">
-          
-            <button pButton type="button" Button class="ui-button-raised" icon="pi pi-pencil" title="Edit"></button>
+            <button pButton type="button" Button class="ui-button-raised" icon="pi pi-clone" title="Clone" (click)="onCloneVehicle(rowData)"></button>
+            <button pButton type="button" Button class="ui-button-raised" icon="pi pi-pencil" title="Edit" (click)="onEditVehicle(rowData)"></button>
             <button pButton type="button" Button class="ui-button-raised" icon="pi pi-trash" title="Delete" (click)="deleteVehicle(rowData.id)"></button>
           </td>
         </tr>

@@ -1,0 +1,33 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between fields*/
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between; 
+    gap: 15px; /* Distance between inputs on the same line */
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .save-btn, .cancel-btn {
+    width: 48%; /* Space between buttons */
+  }
+  
