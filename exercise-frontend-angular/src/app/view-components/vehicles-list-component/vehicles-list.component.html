@@ -3,8 +3,10 @@
   <p-card title="Vehicles">
 
     <div class="top-bar">
-      <button pButton type="button" icon="pi pi-plus" (click)="showNewVehicleDialog()"></button>
+      <button pButton type="button" icon="pi pi-plus" title="Add Vehicle" (click)="showNewVehicleDialog()"></button>
     </div>
+
+    
 
     <p-messages [(value)]="msgs"></p-messages>
 
@@ -18,13 +20,17 @@
     </p-dialog> 
 
     <p-dialog header="Clone vehicle" [(visible)]="displayCloneDialog" [modal]="true" [closable]="true">
-      <app-clone-vehicle-form [vehicleData]="selectedVehicle" (vehicleUpdated)="onCloneVehicle($event)" (cancel)="closeCloneDialog()"></app-clone-vehicle-form>
+      <app-clone-vehicle-form [vehicleData]="selectedVehicle" (clonedVehicle)="onVehicleCloned($event)" (cancel)="closeCloneDialog()"></app-clone-vehicle-form>
     </p-dialog> 
 
     
+    <!--Button to sort by plate-->
+    <div class=buttonFilterSpace>
+      <button pButton  type="button" label="Sort by ID" icon="pi pi-filter" (click)="loadVehicles()"></button>
+      <button pButton  type="button" label="Sort by Plate" icon="pi pi-filter" (click)="sortVehicles()"></button>
+      
+    </div>
 
-
-  
     <p-table #ptable [value]="vehicleList"
              [paginator]="false" [lazy]="true"
              [responsive]="true" [scrollable]="true"

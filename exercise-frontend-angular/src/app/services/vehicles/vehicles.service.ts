@@ -10,15 +10,23 @@ import {VehicleView} from '../../domain/vehicleView';
 export class VehiclesService {
 
   url: string;
+  sortByPlateUrl: string;
   headers: {'Content-Type': 'application/json'};
 
   constructor(public http: HttpClient, private injector: Injector) {
     this.url = environment.domainUrl + 'vehicles';
+    this.sortByPlateUrl = this.url + '/sortbyplate';
+  
   }
 
   //method to load vehicles
   loadVehicles(): Observable<VehicleView[]> {
     return this.http.get<VehicleView[]>(this.url, {headers: this.headers});
+  }
+
+  //method to load vehicles
+  SortVehicles(): Observable<VehicleView[]> {
+    return this.http.get<VehicleView[]>(this.sortByPlateUrl, {headers: this.headers});
   }
 
   //method to create a vehicle

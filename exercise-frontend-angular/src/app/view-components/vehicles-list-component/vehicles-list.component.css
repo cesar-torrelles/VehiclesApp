@@ -8,3 +8,9 @@ button {
     margin-left: auto; 
     margin-bottom: 10px;
   }
+
+.buttonFilterSpace {
+    display: inline-flex;
+    align-items: left; /* Alinea verticalmente el título y el botón */     
+  gap: 10px;
+}

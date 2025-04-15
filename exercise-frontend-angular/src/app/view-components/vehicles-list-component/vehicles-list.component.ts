@@ -60,6 +60,10 @@ export class VehiclesListComponent implements OnInit {
     this.vehiclesService.loadVehicles().subscribe(response => this.onVehicleListCallSuccess(response));
   }
 
+  private sortVehicles() {
+    this.vehiclesService.SortVehicles().subscribe(response => this.onVehicleListCallSuccess(response));
+  }
+
   private deleteVehicle(id: number){
     this.vehiclesService.deleteVehicle(id).subscribe(
       
@@ -85,8 +89,7 @@ export class VehiclesListComponent implements OnInit {
 
   //Method to open dialog and create vehicle
   onVehicleAdded(newVehicle: VehicleView) {
-    //Close the popup
-    this.showNewVehicleDialog()
+    
 
     if (!newVehicle) {
       this.msgs = [{ severity: 'error', summary: 'Error', detail: 'The vehicle could not be added. Please check the data.' }];
@@ -127,17 +130,47 @@ export class VehiclesListComponent implements OnInit {
         this.msgs = [{ severity: 'success', summary: 'Edited vehicle', detail: `Vehicle ${updatedVehicle.plate} successfully updated` }];
         this.ngOnInit();
         this.closeEditDialog();
+        
       },
       (error) => {
         //If there has been an error, we will display an error message.
         this.msgs = [{ severity: 'error', summary: 'Error', detail: 'The vehicle could not be updated. Please try again.' }];
+        this.closeEditDialog();
+        this.closeCloneDialog();
       })
+  }
+
+  onVehicleCloned(newVehicle: VehicleView) {
+    
+
+    if (!newVehicle) {
+      this.msgs = [{ severity: 'error', summary: 'Error', detail: 'The vehicle could not be added. Please check the data.' }];
+      return;
+    }
+    //creates the new vehicle 
+    this.vehiclesService.createVehicle(newVehicle).subscribe(
+      (response) => {
+        if (response && response.id) {  //Suppose the API returns an ID if this was created correctly.
+          this.vehicleList.push(response);
+          this.ngOnInit();
+          this.msgs = [{ severity: 'success', summary: 'Success', detail: 'Vehicle successfully cloned.' }];
+          this.closeCloneDialog();
+        } else {
+          this.msgs = [{ severity: 'error', summary: 'Error', detail: 'Vehicle could not be cloned.' }];
+        }
+      },
+      (error) => {
+        this.msgs = [{ severity: 'error', summary: 'Error', detail: 'A problem has occurred while storing the car.' }];
+      }
+      
+
+    );
   }
 
   //Method to open clone dialog
   onCloneVehicle(clonedVehicle: VehicleView) {
     this.selectedVehicle = { ...clonedVehicle };
-    this.displayCloneDialog = true;
+    this.showCloneDialog();
   }
   
 

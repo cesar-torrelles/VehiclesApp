@@ -14,38 +14,45 @@ export class CloneVehicleFormComponent implements OnChanges {
   @Input() vehicleData: VehicleView;
   @Output() clonedVehicle = new EventEmitter<VehicleView>();
   @Output() cancel = new EventEmitter<void>();
-  cloneVehicleForm: any;
+  cloneVehicleForm: FormGroup;
 
-  onCancel() {
-      this.cancel.emit(); // emite evento hacia el padre
-  }
+  
 
-  vehicleCloneForm!: FormGroup;
+  
 
   constructor(private fb: FormBuilder, private messageService: MessageService) {
-      this.vehicleCloneForm = this.fb.group({
+      this.cloneVehicleForm = this.fb.group({
         plate: ['', Validators.required], 
         
       });
     }
+
+
+
+  onCancel() {
+    this.cancel.emit(); // emite evento hacia el padre
+  }
+
+    
+
   //Is automatically executed each time one of the input property values (@Input()) changes.
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['vehicleData'] && changes['vehicleData'].currentValue && this.vehicleCloneForm) {
+    if (changes['vehicleData'] && changes['vehicleData'].currentValue && this.cloneVehicleForm) {
       const { plate } = this.vehicleData; //We only need the plate
-      this.cloneVehicleForm.patchValue({plate: this.vehicleData.plate || ''});
-      //this.displayDialog = false;
+      this.cloneVehicleForm.patchValue({ plate: plate || '' });
+      
     }
   }
 
   onSubmit() {
     if (this.cloneVehicleForm.valid) {
       //We create a new object to clone the car. Only change the plate.
-      const clonedVehicle = {
+      const VehicleCloned = {
         ...this.vehicleData, //Clone the entire original object
         plate: this.cloneVehicleForm.value.plate, //Update the registration
       };
 
-      this.clonedVehicle.emit(clonedVehicle); //We send the cloned vehicle to the parent component
+      this.clonedVehicle.emit(VehicleCloned); //We send the cloned vehicle to the parent component
     }
    // this.displayDialog = false;
   }
