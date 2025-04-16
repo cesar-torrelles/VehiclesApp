@@ -2,13 +2,6 @@
 
 ![tablet-1632909_1920]()
 
-### Equipo de desarrollo:
-
-| Developer | Rama | Rol | Fecha Incorporación | Proyecto | Versión |
-| --- | :---:  | :---:  | :---:  | :---: | :---:  |
-| Cesar Torrelles | Dev  | FullStack Developer | 16/04/2025 | 
-
-
 ### 1. Descripción
 
 En este repositorio se encuentran todos los archivos relacionados con el proceso de creacion de Vehicles FullStack Web App.
