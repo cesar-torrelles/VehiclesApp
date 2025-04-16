@@ -1,12 +1,11 @@
-# Proyecto Final - bbp (bibliophilia App)
+# Vehicles FullStack Web App
 
-![tablet-1632909_1920](https://user-images.githubusercontent.com/71090798/110982323-10b87800-8371-11eb-85ef-d46cdc3cfb7b.jpg)
+![tablet-1632909_1920]()
 
 ### Equipo de desarrollo:
 
 | Developer | Rama | Rol | Fecha Incorporación | Proyecto | Versión |
 | --- | :---:  | :---:  | :---:  | :---: | :---:  |
-
 | Cesar Torrelles | Dev  | FullStack Developer | 16/04/2025 | 
 
 
@@ -25,14 +24,12 @@ En el Main se encuentra la seccion del proyecto finalizada
 
 Repositorio de los ejercicios:
 ```
-https://github.com/team-6-Java/Biblioteca-CRUD_ER_MySQL
+https://github.com/cesar-torrelles/VehiclesApp
 ```
 ###   3. Lista de herramientas para poder ejecutarlo:
 ```
-Framework Spring Tool Suite  4.0
+Spring Boot
 
-Maven 4.0
-
-Postman 8.0
+Angular
 
 ```
