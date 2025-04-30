@@ -1,6 +1,6 @@
 # Vehicles FullStack Web App
 
-![tablet-1632909_1920]()
+
 
 ### 1. Descripción
 
