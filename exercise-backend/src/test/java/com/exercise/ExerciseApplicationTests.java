@@ -1,10 +1,10 @@
-package com.idiada.exercise;
+package com.exercise;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IdiadaExerciseApplicationTests {
+class ExerciseApplicationTests {
 
 	@Test
 	void contextLoads() {

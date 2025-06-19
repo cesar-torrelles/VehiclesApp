@@ -8,11 +8,11 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.idiada</groupId>
-	<artifactId>idiada-exercise-backend</artifactId>
+	<groupId>com.vehicles</groupId>
+	<artifactId>vehicles-exercise-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>IDIADA exercise backend</name>
+	<name>Vehicles exercise backend</name>
 	<description>Coding exercise</description>
 
 	<properties>
